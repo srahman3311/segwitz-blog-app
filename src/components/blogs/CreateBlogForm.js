@@ -28,7 +28,7 @@ function CreateBlogForm() {
 
 
 
-    function addBlog() {
+    function addBlog(event) {
 
         event.preventDefault();
 

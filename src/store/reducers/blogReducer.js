@@ -1,6 +1,8 @@
 
 const blogReducer = (state = [], action) => {
 
+    console.log("blogs: " + action.payload);
+
     switch(action.type) {
 
         case "ADD_BLOG":

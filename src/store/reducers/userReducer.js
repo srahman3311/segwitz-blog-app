@@ -3,6 +3,8 @@
 
 const userReducer = (state = [], action) => {
 
+    console.log("users: " + action.payload);
+
     switch(action.type) {
 
         case "ADD_USER": 

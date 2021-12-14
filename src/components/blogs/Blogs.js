@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 // Components
-//import CreateBlogForm from "./CreateBlogForm"
+import CreateBlogForm from "./CreateBlogForm"
 
 
 function Blogs() {
@@ -12,6 +12,12 @@ function Blogs() {
     return (
         <main className="blogs">
             <h1>Blogs</h1>
+
+            {blogs.map(blog => {
+                return <p>{blog.title}</p>
+            })}
+
+            <CreateBlogForm />
 
         </main>
     );
