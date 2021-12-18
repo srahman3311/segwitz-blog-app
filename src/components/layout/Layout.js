@@ -1,19 +1,18 @@
 // useLocation can only be used if the component is inside react-router-dom's Router component
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 // Stylesheet
 import styles from "./Layout.module.css";
 
-// Component
-import Button from "../reuseable-components/Button";
 
 function Layout() {
 
     const location = useLocation();
     const navigate = useNavigate();
 
+    // If we are in the homepage no need to show the logout button
     const layoutStyle = { 
-        display: location.pathname === "/" ? "none" : "block" 
+        display: location.pathname === "/" ? "none" : "flex" 
     };
 
     function logout() {
@@ -23,11 +22,25 @@ function Layout() {
     }
 
 
+    const homeRouteStyle = {
+        padding: "5px 10px 10px 10px"
+    }
 
     return (
         <div className={styles.layout} style = {layoutStyle}>
-            <h2>Segwitz Blog Application</h2>
-            <Button title = "Logout" clickHandler={logout} />
+            <Link
+                style = {homeRouteStyle} 
+                className = {styles.dashboard_route} 
+                to="/dashboard"
+            >
+                Segwitz Blog Application
+            </Link>
+            <div className={styles.routes_logout}>
+                <Link className={styles.routes} to="/blogs">Blogs</Link>
+                <Link className={styles.routes} to="/blogs/add-new-blog">New Blog</Link>
+                <button className={styles.logout_button} onClick={logout}>Logout</button>
+            </div>
+            
         </div>
     );
 

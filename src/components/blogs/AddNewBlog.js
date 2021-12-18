@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { createBlog } from "../../store/action-creators/blogs";
 import { useDispatch } from "react-redux";
 
+// Stylesheet
+import styles from "./Blogs.module.css";
+
 // Components
+import Label from "../reuseable-components/Label";
 import InputField from "../reuseable-components/InputField";
 import TextAreaInputField from "../reuseable-components/TextAreaInputField";
+import Button from "../reuseable-components/Button";
 
 
 
@@ -16,6 +21,12 @@ function AddNewBlog() {
 
     const [validationError, setValidationError] = useState(false);
     const [blogInfo, setBlogInfo] = useState({ title: "", content: ""});
+
+    useEffect(() => {
+
+        if(!localStorage.getItem("user")) navigate("/")
+
+    }, [])
 
     function handleChange(event) {
 
@@ -31,7 +42,7 @@ function AddNewBlog() {
 
         const { title, content } = blogInfo;
 
-        if(!title || !content) return alert("Please fill up all fields");
+        if(!title || !content) return setValidationError(true);
 
         dispatch(createBlog(blogInfo));
 
@@ -40,19 +51,20 @@ function AddNewBlog() {
     }
 
     return (
-        <div className="add_new_blog">
-            <Link to="/blogs">Blog List</Link>
+        <div className={styles.add_new_blog}>
 
-            <form className="create_blog_form">
+            <form className={styles.new_blog_form}>
+                <Label text = "Title" />
                 <InputField
                     type = "text"
                     name = "title"
                     value = {blogInfo.title}
-                    placeholder = "blog title" 
+                    placeholder = "" 
                     handleChange = {handleChange}
                     validationError = {validationError}
                     validationErrorMessageFor = "blog title"
                 />
+                <Label text = "Content" />
                 <TextAreaInputField
                     name = "content"
                     value = {blogInfo.content}
@@ -61,10 +73,8 @@ function AddNewBlog() {
                     validationErrorMessageFor = "blog content"
                 />
 
-                <button onClick = {addBlog}>Add</button>
+                <Button title = "Save" clickHandler={addBlog} />
             </form>
-
-            
             
         </div>
     );

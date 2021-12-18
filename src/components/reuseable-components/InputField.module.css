@@ -1,5 +1,5 @@
 .input_field {
-    width: 100%;
+    max-width: 100%;
     margin-bottom: 20px;
 }
 
@@ -10,10 +10,24 @@
 .input_field input[type=text], .input_field input[type=password] {
     width: 100%;
     border: none;
-    border-bottom: 0.5px solid rgb(0, 0, 0);
+    border-bottom: 0.5px solid rgb(0, 0, 0, 0.2);
     padding: 5px 0px;
 }
 
 .input_field input[type=text]:focus, .input_field input[type=password]:focus {
+    outline: none;
+}
+
+.textarea_input_field {
+    max-width: 100%;
+}
+
+.textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.textarea:focus {
     outline: none;
 }

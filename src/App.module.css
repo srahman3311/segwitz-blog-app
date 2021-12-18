@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Michroma', sans-serif;
+}
+
+.container {
+    min-width: 100%;
+    min-height: 100vh;
+    background-color: #d3e4cd5e;
+    vertical-align: bottom;
+}

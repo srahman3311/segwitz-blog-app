@@ -4,23 +4,23 @@ import styles from "./Login.module.css";
 
 
 import InputField from "../reuseable-components/InputField";
-import Button from "../reuseable-components/ButtonDiv";
+import ButtonDiv from "../reuseable-components/ButtonDiv";
+import Header from "../reuseable-components/Header";
 
 export default function Login () {
 
     const navigate = useNavigate();
 
-    // const [serverErrorMessage, setServerErrorMessage] = useState("");
     const [userInfo, setUserInfo] = useState({ email: "", password: "" });
     const [validationError, setValidationError] = useState(false);
-
-
 
     useEffect(() => {
 
         if(localStorage.getItem("user")) return navigate("/dashboard");
 
     }, [])
+
+    
 
     function handleChange (event) {
 
@@ -57,19 +57,18 @@ export default function Login () {
     return (
         <div className={styles.login_wrapper}>
             <div className={styles.login}>
+                <Header text = "Please login" />
                 <form className={styles.login_credentials}>
                     <InputField
-                        label = "Username/Email" 
                         type = "text"
                         name = "email"
-                        value = {userInfo.emailUsername}
+                        value = {userInfo.email}
                         placeholder = "email or username"
                         validationError = {validationError}
                         validationErrorMessageFor = "email"
                         handleChange = {handleChange}
                     />
                     <InputField
-                        label = "Password" 
                         type = "password"
                         name = "password"
                         value = {userInfo.password}
@@ -79,7 +78,7 @@ export default function Login () {
                         handleChange = {handleChange}
                     />
                     
-                    <Button title="Login" clickHandler = {login} />
+                    <ButtonDiv title="Login" clickHandler = {login} />
                 </form>
             </div>
         </div>

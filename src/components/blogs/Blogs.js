@@ -1,20 +1,31 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+// Actions
+import { deleteBlog } from "../../store/action-creators/blogs";
 
 // Stylesheet
 import styles from "./Blogs.module.css";
 
 // Components 
-import Blog from "./Blog";
+import Header from "../reuseable-components/Header";
+import BlogImage from "./BlogImage";
+import BlogTitle from "./BlogTitle";
+import BlogContent from "./BlogContent";
+import DeleteButton from "../reuseable-components/DeleteButton";
+
 
 
 
 function Blogs() {
 
     const navigate = useNavigate();
-  
+
+    const dispatch = useDispatch();
     const blogs = useSelector(state => !state.blogs.length ? JSON.parse(localStorage.getItem("blogs")) : state.blogs);
+
+    const removeBlog = blogId => dispatch(deleteBlog(blogId));
 
     useEffect(() => {
 
@@ -24,12 +35,22 @@ function Blogs() {
 
    
     return (
-        <main className="blogs">
-            <h1>Blogs</h1>
-            <Link to ="/blogs/add-new-blog">Add New</Link>
-            <div className={styles.blog_list}>
-                {blogs && blogs.map(blog => <Blog key = {blog.id} blog = {blog} />)}
-            </div>
+        <main className={styles.blogs}>
+            <Header text = "Blogs" />
+            {
+                blogs 
+                &&
+                blogs.map(blog => {
+                    return (
+                        <div className={styles.blog} key = {blog.id}>
+                            <BlogImage imageUrl = {blog.imageUrl} />
+                            <BlogTitle title = {blog.title} />
+                            <BlogContent blogId={blog.id} content = {blog.content} />
+                            <DeleteButton itemId = {blog.id} deleteHandler={removeBlog} />
+                        </div>
+                    );
+                })
+            }
         </main>
     );
 

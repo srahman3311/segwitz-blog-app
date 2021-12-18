@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link, Navigate } from "react-router-dom";
+
+// Stylesheet
+import styles from "./Dashboard.module.css";
 
 // Components
+import Header from "../reuseable-components/Header";
 
 
 function Dashboard() {
@@ -16,13 +19,9 @@ function Dashboard() {
     }, [])
 
 
-    if(!localStorage.getItem("user")) return <div>{navigate("/")}</div>
-
     return (
-        <main className="dashboard">
-            <h1>Welcome to Segwitz blog application</h1>
-            <Link to ="/blogs">Blog List</Link>
-            <Link to ="/blogs/add-new-blog">New Blog</Link>
+        <main className={styles.dashboard}>
+            <Header text = "Welcome to Segwitz blog application" />
         </main>
     );
 

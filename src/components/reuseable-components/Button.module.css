@@ -1,28 +1,35 @@
+.button, .delete_button, .button_div button {
+    position: absolute;
+    right: 0px;
+    bottom: 40px;
+    width: 100px;
+    padding: 4px 0 5px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #22577A;
+    color: white;
+    border-radius: 10px;
+    transition: 0.8s;
+}
+
+.delete_button {
+    left: 10px;
+    bottom: 10px;
+}
+
 .button_div {
     width: 100%;
     text-align: center;
-    margin: 40px 0 20px 0;
+    margin-top: 30px;
 }
 
 .button_div button {
-    width: 200px;
-    padding: 4px 0 5px 0;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: #9b72aa6c;
-    border-radius: 2px;
-
+    position: static;
+    width: 100%;
 }
 
-.button {
-    width: 200px;
-    padding: 4px 0 5px 0;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: #9b72aada;
-    color: white;
-    border-radius: 2px;
-
+.button:hover, .delete_button:hover, .button_div button:hover {
+    background-color: #E05D5D;
 }
+
