@@ -1,17 +1,34 @@
+import { v4 as uuidv4 } from 'uuid';
 
 const blogReducer = (state = [], action) => {
 
-    console.log("blogs: " + action.payload);
+    const blogs = JSON.parse(localStorage.getItem("blogs"));
 
     switch(action.type) {
 
         case "ADD_BLOG":
-            return [...state, action.payload];
+
+            if(blogs) {
+
+                localStorage.setItem("blogs", JSON.stringify([...blogs, {id: uuidv4(), ...action.payload}]));
+
+                return [...JSON.parse(localStorage.getItem("blogs"))];
+            }
+
+            localStorage.setItem("blogs", JSON.stringify([{id: uuidv4(), ...action.payload}]));
+
+            return JSON.parse(localStorage.getItem("blogs"));
         
         case "DELETE_BLOG":
-            return state.filter(blog => blog.id !== action.payload)
+
+            const filteredBlogs = blogs.filter(blog => action.payload !== blog.id);
+
+            localStorage.setItem("blogs", JSON.stringify(filteredBlogs));
+            
+            return JSON.parse(localStorage.getItem("blogs"));
 
         default:
+
             return state; 
     }
 

@@ -1,0 +1,28 @@
+.button_div {
+    width: 100%;
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+
+.button_div button {
+    width: 200px;
+    padding: 4px 0 5px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #9b72aa6c;
+    border-radius: 2px;
+
+}
+
+.button {
+    width: 200px;
+    padding: 4px 0 5px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #9b72aada;
+    color: white;
+    border-radius: 2px;
+
+}
